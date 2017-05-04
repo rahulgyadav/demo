@@ -1,0 +1,60 @@
+<div ng-controller="RegisterCtrl as register">
+    <h3>Register Here:</h3>
+    <div>
+        <form role="register_form" name="register_form"  method="POST" ng-submit="register.validate(register_form.$valid,register_form )" novalidate="">
+            <div class="form-field col-md-3">
+                <div class="form-group ">
+                    <label class="control-label">First Name*</label>
+                    <input type="text"  ng-model="register.attributes.first_name" name="first_name" maxlength="45"  ng-pattern="validation.pattern.name" required  class="form-control">
+                    <div class="m-t-xs text-danger" ng-show="register_form.first_name.$invalid && register_form.$submitted">
+                        <span ng-if="register_form.first_name.$error.required" ng-bind="validation.message.required"></span>
+                        <span ng-if="register_form.first_name.$error.pattern" ng-bind="validation.message.invalid"></span>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="control-label">Last Name*</label>
+                    <input type="text"  ng-model="register.attributes.last_name" name="last_name" maxlength="45" ng-pattern="validation.pattern.name" required class="form-control">
+                    <div class="m-t-xs text-danger" ng-show="register_form.last_name.$invalid && register_form.$submitted">
+                        <span ng-if="register_form.last_name.$error.required" ng-bind="validation.message.required"></span>
+                        <span ng-if="register_form.last_name.$error.pattern" ng-bind="validation.message.invalid"></span>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="control-label">Email*</label>
+                    <input type="email"  ng-model="register.attributes.email" name="email" maxlength="65" required class="form-control">
+                    <div class="m-t-xs text-danger" ng-show="register_form.email.$invalid && register_form.$submitted">
+                        <span class="text-danger" ng-show="register_form.email.$error"></span>
+                        <span ng-if="register_form.email.$error.required" ng-bind="validation.message.required"></span>
+                        <span ng-if="register_form.email.$error.$invalid" ng-bind="validation.message.invalid"></span>
+                        <span ng-show="register_form.email.$error.email" ng-bind="validation.message.invalid"></span>
+
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label class="control-label">Password*</label>
+                    <input type="password"  ng-model="register.attributes.password" name="password" maxlength="10" required class="form-control">
+                    <div class="m-t-xs text-danger" ng-show="register_form.password.$invalid && register_form.$submitted">
+                        <span ng-if="register_form.password.$error.required" ng-bind="validation.message.required"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group ">
+                    <label class="control-label">Confirm Password*</label>
+                    <input type="password"  ng-model="register.attributes.confirm_password" name="confirm_password" maxlength="10" required class="form-control">
+                    <div class="m-t-xs text-danger" ng-show="register_form.confirm_password.$invalid && register_form.$submitted">
+                        <span ng-if="register_form.confirm_password.$error.required" ng-bind="validation.message.required"></span>
+                    </div>
+                    <span class="text-danger" ng-show="!register_form.password.$error.required && !register_form.confirm_password.$error.required && register.attributes.password != register.attributes.confirm_password">Passwords do not match.</span>
+                </div>
+
+                <div class="form-group ">
+                    <button class="btn btn-success btn-block col-md-3" type="submit" title="Login">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
